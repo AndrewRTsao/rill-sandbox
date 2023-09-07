@@ -1,0 +1,113 @@
+# Visit https://docs.rilldata.com/reference/project-files to learn more about Rill project files.
+
+title: one_big_table_dashboard
+model: one_big_table
+timeseries: server_timestamp
+measures:
+  - label: Total records
+    expression: count(*)
+    name: total_records
+    description: Total number of records present
+    format_preset: humanize
+    valid_percent_of_total: true
+  - label: Unique session count
+    expression: count(distinct session_id)
+    name: unique_session_count
+    description: Number of unique sessions
+    format_preset: humanize
+    valid_percent_of_total: true
+  - label: Bids Won
+    expression: count(winning_bidder) FILTER (WHERE length(winning_bidder) != 0 AND winning_bidder = bidder AND winning_bidder = active_bidders)
+    name: bids_won_by_bidder
+    description: Bids won by a particular bidder
+    format_preset: humanize
+    valid_percent_of_total: true
+  - label: Average Response Time
+    expression: avg(response_time) FILTER (WHERE active_bidders = bidder)
+    name: avg_response_time
+    description: Average response time of bidder
+    format_preset: humanize
+    valid_percent_of_total: true
+  - label: Total Bids Made
+    expression: count(bidder) FILTER (WHERE active_bidders = bidder)
+    name: total_bids
+    description: Total number of bids made by a particular bidder
+    format_preset: humanize
+    valid_percent_of_total: true
+dimensions:
+  - name: country_name
+    label: Country_name
+    column: country_name
+    description: ""
+  - name: referrer_url
+    label: Referrer_url
+    column: referrer_url
+    description: ""
+  - name: session_id
+    label: Session_id
+    column: session_id
+    description: ""
+  - name: event_type
+    label: Event_type
+    column: event_type
+    description: ""
+  - name: section
+    label: Section
+    column: section
+    description: ""
+  - name: has_ad_server_won_auction
+    label: Has_ad_server_won_auction
+    column: has_ad_server_won_auction
+    description: ""
+  - name: has_pre_bid_won
+    label: Has_pre_bid_won
+    column: has_pre_bid_won
+    description: ""
+  - name: winning_size
+    label: Winning_size
+    column: winning_size
+    description: ""
+  - name: winning_bidder
+    label: Winning_bidder
+    column: winning_bidder
+    description: ""
+  - name: publisher_name
+    label: Publisher_name
+    column: publisher_name
+    description: ""
+  - name: site
+    label: Site
+    column: site
+    description: ""
+  - name: advertiser_name
+    label: Advertiser_name
+    column: advertiser_name
+    description: ""
+  - name: browser
+    label: Browser
+    column: browser
+    description: ""
+  - name: is_infinite_scroll
+    label: Is_infinite_scroll
+    column: is_infinite_scroll
+    description: ""
+  - name: active_bidders
+    label: Active_bidders
+    column: active_bidders
+    description: ""
+  - name: bidder
+    label: Bidder
+    column: bidder
+    description: ""
+available_time_zones:
+  - America/Los_Angeles
+  - America/Chicago
+  - America/New_York
+  - Europe/London
+  - Europe/Paris
+  - Asia/Jerusalem
+  - Europe/Moscow
+  - Asia/Kolkata
+  - Asia/Shanghai
+  - Asia/Tokyo
+  - Australia/Sydney
