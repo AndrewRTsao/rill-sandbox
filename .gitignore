@@ -1,6 +1,3 @@
-.DS_Store
-*.db
-*.db.wal
 # Rill
 *.db
 *.db.tmp
